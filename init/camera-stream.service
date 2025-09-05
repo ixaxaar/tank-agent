@@ -1,0 +1,16 @@
+[Unit]
+Description=Camera Stream Service
+After=network.target
+
+[Service]
+Type=simple
+User=ixaxaar
+Group=ixaxaar
+WorkingDirectory=/home/ixaxaar
+ExecStart=/usr/bin/python3 /home/ixaxaar/camera_stream.py
+Restart=always
+RestartSec=5
+Environment="PYTHONUNBUFFERED=1"
+
+[Install]
+WantedBy=multi-user.target
