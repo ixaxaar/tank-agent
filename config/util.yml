@@ -1,0 +1,6 @@
+# wheel position enum
+wheel_positions:
+  front_left: 0
+  rear_left: 1
+  front_right: 2
+  rear_right: 3

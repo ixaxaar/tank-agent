@@ -1,0 +1,48 @@
+# Drive motors
+mobility:
+  left_wheels:
+    driver_type: "L298N"
+    pins:
+      # Front left motor
+      ena: 12 # Speed (PWM)
+      in1: 10 # Forward
+      in2: 22 # Reverse
+      # Rear left motor
+      in3: 27 # Forward
+      in4: 17 # Reverse
+      enb: 2 # Speed (PWM but GPIO)
+    params:
+      motor_a: wheel_positions.front_left
+      motor_b: wheel_positions.rear_left
+
+  right_wheels:
+    driver_type: "L298N"
+    pins:
+      # Front right motor
+      ena: 13 # Speed (PWM)
+      in1: 26 # Forward
+      in2: 21 # Reverse
+      # Rear right motor
+      in3: 20 # Forward
+      in4: 16 # Reverse
+      enb: 6 # Speed (PWM but GPIO)
+    params:
+      motor_a: wheel_positions.front_right
+      motor_b: wheel_positions.rear_right
+
+# Other motors
+motors:
+  camera_gimbal:
+    driver_type: "stepper_driver"
+    pins:
+      in1: 14
+      in2: 15
+      in3: 18
+      in4: 23
+    params:
+      steps_per_revolution: 200
+      microstepping: 1
+      max_speed: 1000 # steps per second
+      acceleration: 500
+      range_degrees: 360 # Pan range
+

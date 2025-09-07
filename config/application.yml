@@ -1,0 +1,49 @@
+# Tank Movement Patterns
+movement_config:
+  # All 4 motors for tank steering
+  forward:
+    motors:
+      [
+        wheel_positions.front_left,
+        wheel_positions.rear_left,
+        wheel_positions.front_right,
+        wheel_positions.rear_right,
+      ]
+    direction: "forward"
+
+  backward:
+    motors:
+      [
+        wheel_positions.front_left,
+        wheel_positions.rear_left,
+        wheel_positions.front_right,
+        wheel_positions.rear_right,
+      ]
+    direction: "reverse"
+
+  turn_left:
+    left_motors: [wheel_positions.front_left, wheel_positions.rear_left]
+    left_direction: "reverse"
+    right_motors: [wheel_positions.front_right, wheel_positions.rear_right]
+    right_direction: "forward"
+
+  turn_right:
+    left_motors: [wheel_positions.front_left, wheel_positions.rear_left]
+    left_direction: "forward"
+    right_motors: [wheel_positions.front_right, wheel_positions.rear_right]
+    right_direction: "reverse"
+
+# Camera Configuration
+camera:
+  type: "pi_camera"
+  resolution: [1920, 1080]
+  framerate: 10
+  rotation: 0
+  gimbal_control: motors.camera_gimbal
+  stream:
+    enabled: true
+    port: 8080
+    quality: 85
+    flip: false
+    vflip: true
+    hflip: false
