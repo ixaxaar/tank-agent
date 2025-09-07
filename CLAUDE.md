@@ -93,7 +93,7 @@ make install  # Copy files to Pi & setup systemd services
 
 ## Dependencies
 ```bash
-pip install RPi.GPIO PyYAML flask picamera2
+pip install -r requirements.txt
 ```
 
 ## Test Results Tracking
