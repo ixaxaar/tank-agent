@@ -1,4 +1,4 @@
-RPi.GPIO>=0.7.0
+lgpio>=0.2.0
 PyYAML>=6.0
 flask>=2.0.0
 picamera2>=0.3.0

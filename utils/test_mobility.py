@@ -19,10 +19,10 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 try:
     from motor_control import TankController, L298NMotorController, StepperMotor
-    import RPi.GPIO as GPIO
+    from gpio_compat import GPIO
 except ImportError as e:
     print(f"Import error: {e}")
-    print("Make sure you're running on a Raspberry Pi with RPi.GPIO installed")
+    print("Make sure you're running on a Raspberry Pi with lgpio installed")
     sys.exit(1)
 
 

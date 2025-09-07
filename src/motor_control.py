@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import RPi.GPIO as GPIO
 import time
 import yaml
 from pathlib import Path
+from gpio_compat import GPIO
 
 
 class L298NMotorController:
