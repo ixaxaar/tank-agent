@@ -1,7 +1,7 @@
 # Robot Tank Project - Claude Documentation
 
 ## Project Overview
-4-wheel drive robot tank with camera gimbal, built on Raspberry Pi with L298N motor drivers.
+**Agentic AI controlled robotic tank project** - 4-wheel drive robot tank with camera gimbal, built on Raspberry Pi with L298N motor drivers. Designed for autonomous operation with AI decision-making capabilities.
 
 ## Hardware Configuration
 
@@ -16,7 +16,7 @@
 
 - **Camera Gimbal**: Stepper motor (4-phase)
   - GPIO pins: 14, 15, 18, 23
-  - 200 steps/revolution, 360° pan range
+  - 200 steps/revolution, 360ï¿½ pan range
 
 ### Camera
 - Pi Camera v2/v3 compatible
@@ -79,7 +79,7 @@ make install  # Copy files to Pi & setup systemd services
 - Easy to modify without code changes
 
 ## Known Issues & Fixes
-- Fixed typo: `moror_a` ’ `motor_a` in motors.yml:30
+- Fixed typo: `moror_a` ï¿½ `motor_a` in motors.yml:30
 - Path fix: moved motor_control.py from lib/ to src/
 - Import paths use relative src/ directory
 
