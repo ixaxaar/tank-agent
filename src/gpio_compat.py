@@ -10,11 +10,12 @@ try:
     PI5_AVAILABLE = True
 except ImportError:
     PI5_AVAILABLE = False
-    try:
-        import RPi.GPIO as GPIO
-        RPI_GPIO_AVAILABLE = True
-    except ImportError:
-        RPI_GPIO_AVAILABLE = False
+
+try:
+    import RPi.GPIO as RPI_GPIO_MODULE
+    RPI_GPIO_AVAILABLE = True
+except ImportError:
+    RPI_GPIO_AVAILABLE = False
 
 class GPIO:
     # Constants
@@ -34,8 +35,7 @@ class GPIO:
             # lgpio always uses BCM numbering
             cls._handle = lgpio.gpiochip_open(0)
         elif RPI_GPIO_AVAILABLE:
-            import RPi.GPIO as rpi_gpio
-            rpi_gpio.setmode(rpi_gpio.BCM if mode == "BCM" else rpi_gpio.BOARD)
+            RPI_GPIO_MODULE.setmode(RPI_GPIO_MODULE.BCM if mode == "BCM" else RPI_GPIO_MODULE.BOARD)
         else:
             print("Warning: No GPIO library available - running in simulation mode")
     
@@ -43,8 +43,7 @@ class GPIO:
     def setwarnings(cls, flag):
         """Set GPIO warnings"""
         if RPI_GPIO_AVAILABLE and not PI5_AVAILABLE:
-            import RPi.GPIO as rpi_gpio
-            rpi_gpio.setwarnings(flag)
+            RPI_GPIO_MODULE.setwarnings(flag)
     
     @classmethod
     def setup(cls, pin, direction):
@@ -55,8 +54,7 @@ class GPIO:
             else:
                 lgpio.gpio_claim_input(cls._handle, pin)
         elif RPI_GPIO_AVAILABLE:
-            import RPi.GPIO as rpi_gpio
-            rpi_gpio.setup(pin, rpi_gpio.OUT if direction == "OUT" else rpi_gpio.IN)
+            RPI_GPIO_MODULE.setup(pin, RPI_GPIO_MODULE.OUT if direction == "OUT" else RPI_GPIO_MODULE.IN)
     
     @classmethod
     def output(cls, pin, value):
@@ -64,8 +62,7 @@ class GPIO:
         if PI5_AVAILABLE and cls._handle is not None:
             lgpio.gpio_write(cls._handle, pin, value)
         elif RPI_GPIO_AVAILABLE:
-            import RPi.GPIO as rpi_gpio
-            rpi_gpio.output(pin, value)
+            RPI_GPIO_MODULE.output(pin, value)
         else:
             print(f"GPIO: Setting pin {pin} to {value}")
     
@@ -80,8 +77,7 @@ class GPIO:
             lgpio.gpiochip_close(cls._handle)
             cls._handle = None
         elif RPI_GPIO_AVAILABLE:
-            import RPi.GPIO as rpi_gpio
-            rpi_gpio.cleanup()
+            RPI_GPIO_MODULE.cleanup()
     
     @classmethod
     def PWM(cls, pin, frequency):
@@ -89,8 +85,7 @@ class GPIO:
         if PI5_AVAILABLE:
             return LgpioPWM(cls._handle, pin, frequency)
         elif RPI_GPIO_AVAILABLE:
-            import RPi.GPIO as rpi_gpio
-            return rpi_gpio.PWM(pin, frequency)
+            return RPI_GPIO_MODULE.PWM(pin, frequency)
         else:
             return SimulatedPWM(pin, frequency)
 
