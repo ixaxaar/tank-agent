@@ -144,7 +144,7 @@ class StepperMotor:
 
 
 class TankController:
-    def __init__(self, config_dir="/run/media/ixaxaar/src/code/src/devices/tank/config"):
+    def __init__(self, config_dir="./config"):
         """Initialize tank controller from config files"""
         self.config_dir = Path(config_dir)
 
